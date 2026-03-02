@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ヨリプラ AIプログラム プロンプト集</title>
+  <style>
+    :root { --bg: #fafafa; --card: #fff; --border: #e5e7eb; --primary: #2563eb; --text: #1f2937; --muted: #6b7280; }
+    * { box-sizing: border-box; }
+    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .intro, .notice { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .notice { border-left: 4px solid #f59e0b; }
+    h2 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    .prompt-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .prompt-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .prompt-text { white-space: pre-wrap; font-family: "Consolas", "Monaco", monospace; font-size: 0.8rem; background: #f8fafc; padding: 0.75rem; border-radius: 4px; margin: 0.5rem 0; overflow-x: auto; }
+    .copy-btn { display: inline-block; background: var(--primary); color: #fff; border: none; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; margin-top: 0.25rem; }
+    .copy-btn:hover { opacity: 0.9; }
+    .copy-btn.copied { background: #059669; }
+    footer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <h1>ヨリプラ AIプログラム プロンプト集</h1>
+  <p class="subtitle">就活・仕事・生活で使えるプロンプト例（Geminiなどでコピペして使えます）</p>
+
+  <div class="intro">
+    <strong>使い方</strong><br>
+    各プロンプトの「コピー」ボタンを押すと、AIチャット欄に貼り付けてすぐ使えます。ご自身の状況に合わせて、[ ]内を書き換えたり、言葉を足したりして使ってください。
+  </div>
+
+  <div class="notice">
+    <strong>ご利用時の注意</strong><br>
+    ・個人情報（氏名・住所・病歴など）を入力しないでください。<br>
+    ・服薬・医療の判断は医師に相談してください。用法・用量等はAIの出力をそのまま参照しないでください。<br>
+    ・AIの回答は誤りを含む場合があります。考える材料として使い、大事なことは専門家や周りの人と相談してください。
+  </div>
+
+  <h2>就活編</h2>
+
+  <div class="prompt-block">
+    <div class="prompt-title">自己PR文作成</div>
+    <pre class="prompt-text" data-prompt="selfpr">あなたは就職活動のサポートをする専門家です。
+自己PR文を作成してください。
+
+私の特徴：
+- [ここに自分の特徴を書く]
+- [ここに自分の特徴を書く]
+- [ここに自分の特徴を書く]
+
+制約：
+- 400文字程度
+- 前向きで具体的
+- 箇条書きで3つのポイントを挙げてから、文章にする</pre>
+    <button class="copy-btn" type="button" data-copy="selfpr">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">面接練習（長所・短所など）</div>
+    <pre class="prompt-text" data-prompt="interview">あなたは面接の練習をサポートする専門家です。
+以下の質問への回答を考えてください。
+
+質問：「あなたの長所と短所を教えてください」
+
+私の情報：
+- 長所：[ここに長所を書く]
+- 短所：[ここに短所を書く]
+
+制約：
+- 2分程度で話せる分量
+- 短所は改善の努力をしていることも含める
+- 前向きなトーン</pre>
+    <button class="copy-btn" type="button" data-copy="interview">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">面接でよく聞かれる質問3つ</div>
+    <pre class="prompt-text" data-prompt="interview3">就活の面接でよく聞かれる質問を3つ教えて。それぞれへの回答のポイントも簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="interview3">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">志望動機の下書き</div>
+    <pre class="prompt-text" data-prompt="shibou">あなたは就職活動のサポートをする専門家です。
+志望動機の下書きを作成してください。
+
+質問：「志望動機を教えてください」
+
+私の情報：
+- 志望理由：[ここに志望理由を書く]
+- 会社について知っていること：[ここに知っていることを書く]
+
+制約：
+- 300文字程度
+- 具体的で説得力がある
+- 箇条書きで構成を考えてから、文章にする</pre>
+    <button class="copy-btn" type="button" data-copy="shibou">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">企業への応募メール</div>
+    <pre class="prompt-text" data-prompt="applymail">あなたは就職活動のサポートをする専門家です。
+メールで企業に応募するときのメール文を作成してください。
+
+応募先：[企業名・採用担当など]
+応募したい職種・ポジション：[ここに書く]
+私の簡単な自己紹介：[学歴・経験・アピールポイントを1〜2行で]
+
+制約：
+- 件名は応募意図が伝わるように
+- 挨拶・応募の旨・自己紹介・連絡先の希望を簡潔に
+- 丁寧で読みやすい長さ（200〜300文字程度）</pre>
+    <button class="copy-btn" type="button" data-copy="applymail">コピー</button>
+  </div>
+
+  <h2>仕事編</h2>
+
+  <div class="prompt-block">
+    <div class="prompt-title">メールの下書き</div>
+    <pre class="prompt-text" data-prompt="mail">あなたはビジネスメールの作成をサポートする専門家です。
+以下の内容でメールの下書きを作成してください。
+
+宛先：[上司/同僚/取引先など]
+件名：[件名を書く]
+内容：[伝えたい内容を書く]
+
+制約：
+- 丁寧で簡潔
+- 要件を明確に
+- 必要に応じて謝罪や感謝の言葉を含める</pre>
+    <button class="copy-btn" type="button" data-copy="mail">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">会議を遅らせたいときのメール例</div>
+    <pre class="prompt-text" data-prompt="mail-time">「上司に、明日の会議を1時間遅らせたいと伝えるメール」の下書きを作成して。丁寧で簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="mail-time">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">報告書の構成</div>
+    <pre class="prompt-text" data-prompt="report">あなたはビジネス文書の作成をサポートする専門家です。
+以下の内容で報告書の構成を考えてください。
+
+報告内容：[何について報告するか]
+対象読者：[誰に報告するか]
+
+制約：
+- 見出しと箇条書きで構成
+- 重要なポイントを最初に
+- A4用紙1枚程度で収まる分量</pre>
+    <button class="copy-btn" type="button" data-copy="report">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">会議の議事録のポイント</div>
+    <pre class="prompt-text" data-prompt="minutes">会議の議事録で押さえるべきポイントを、5つ箇条書きで教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="minutes">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">議事録の要約</div>
+    <pre class="prompt-text" data-prompt="minutes-summary">あなたは議事録を整理するサポートをする専門家です。
+以下の会議メモを要約し、決定事項・TODO・次回日程を箇条書きで整理してください。
+
+【会議メモをここに貼る】</pre>
+    <button class="copy-btn" type="button" data-copy="minutes-summary">コピー</button>
+  </div>
+
+  <h2>生活編</h2>
+
+  <div class="prompt-block">
+    <div class="prompt-title">レシピ提案</div>
+    <pre class="prompt-text" data-prompt="recipe">あなたは料理のレシピを提案する専門家です。
+以下の条件でレシピを提案してください。
+
+条件：
+- 使いたい食材：[食材を書く]
+- 調理時間：[時間を書く]
+- 難易度：[簡単/普通/難しい]
+
+制約：
+- 手順をわかりやすく
+- 分量も含める
+- 箇条書きで</pre>
+    <button class="copy-btn" type="button" data-copy="recipe">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">今の気分に合うレシピ（短い例）</div>
+    <pre class="prompt-text" data-prompt="recipe-short">今の気分に合う簡単なレシピを1つ提案して。材料は3〜4品目までで。</pre>
+    <button class="copy-btn" type="button" data-copy="recipe-short">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">悩みごとの整理</div>
+    <pre class="prompt-text" data-prompt="worry">あなたは悩みごとを整理するサポートをする専門家です。
+以下の悩みごとを整理して、考えられる解決策を提案してください。
+
+悩みごと：[悩みを書く]
+
+制約：
+- 悩みを3つのポイントに整理
+- それぞれの解決策を2つずつ提案
+- 前向きで建設的なアドバイス
+- 箇条書きで</pre>
+    <button class="copy-btn" type="button" data-copy="worry">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">悩みを整理するための質問例</div>
+    <pre class="prompt-text" data-prompt="worry-q">悩みごとを整理するとき、自分に質問する例を5つ挙げて。</pre>
+    <button class="copy-btn" type="button" data-copy="worry-q">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">趣味を探す</div>
+    <pre class="prompt-text" data-prompt="hobby">「初心者向けの趣味」を3つ提案して。それぞれ1行で説明して。</pre>
+    <button class="copy-btn" type="button" data-copy="hobby">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">通院のときの体調説明</div>
+    <pre class="prompt-text" data-prompt="health-visit">あなたは医療機関で患者の説明を整理するサポートをする専門家です。
+通院のとき、医師に伝えるための体調の説明文を整理してください。
+
+現在の症状：[症状を書く]
+いつから：[時期]
+どの程度か：[頻度・程度・気になること]
+飲んでいる薬・持病：[あれば書く]
+
+制約：
+- 短く要点だけ。医師が聞き取りやすい順に
+- 箇条書きで2〜3分で話せる分量
+- 自分の言葉で伝えやすいように</pre>
+    <button class="copy-btn" type="button" data-copy="health-visit">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title">体調管理</div>
+    <pre class="prompt-text" data-prompt="health-mgmt">あなたは体調管理をサポートする専門家です。
+体調を記録・管理するためのアドバイスをしてください。
+
+知りたいこと（次のいずれかや複数でOK）：
+- 体調を記録するときのポイント・項目の例
+- 体調の波があるときの過ごし方のコツ
+- 通院や服薬を忘れないための工夫
+- その他：[自分で書く]
+
+制約：
+- 無理のない範囲でできることを
+- 箇条書きでわかりやすく
+- 3〜5つのポイントにまとめて</pre>
+    <button class="copy-btn" type="button" data-copy="health-mgmt">コピー</button>
+  </div>
+
+  <footer>
+    ヨリプラ AIプログラム用プロンプト集。Gemini等のAIチャットでコピペしてご利用ください。
+  </footer>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = this.getAttribute('data-copy');
+        var pre = document.querySelector('.prompt-text[data-prompt="' + id + '"]');
+        var text = pre ? pre.textContent : '';
+        navigator.clipboard.writeText(text).then(function() {
+          btn.textContent = 'コピーしました';
+          btn.classList.add('copied');
+          setTimeout(function() { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 2000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
