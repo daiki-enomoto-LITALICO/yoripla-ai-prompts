@@ -4,35 +4,191 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ヨリプラ AIプログラム プロンプト集</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #fafafa; --card: #fff; --border: #e5e7eb; --primary: #2563eb; --text: #1f2937; --muted: #6b7280; }
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --border: #334155;
+      --primary: #38bdf8;
+      --primary-hover: #7dd3fc;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #a78bfa;
+      --success: #34d399;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
+    }
     * { box-sizing: border-box; }
-    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem 4rem; max-width: 720px; margin-left: auto; margin-right: auto; }
-    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
-    .intro, .notice { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    body {
+      font-family: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      margin: 0;
+      padding: 2rem 1rem 5rem;
+      min-height: 100vh;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .intro, .notice {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow);
+    }
     .notice { border-left: 4px solid #f59e0b; }
-    h2 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 1rem; padding-top: 0.5rem; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-top: 0.5rem;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.5rem;
+    }
     h2:first-of-type { margin-top: 0; }
-    .prompt-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
-    .prompt-num { font-weight: 700; color: var(--primary); margin-right: 0.5rem; }
-    .prompt-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
-    .prompt-text { white-space: pre-wrap; font-family: "Consolas", "Monaco", monospace; font-size: 0.8rem; background: #f8fafc; padding: 0.75rem; border-radius: 4px; margin: 0.5rem 0; overflow-x: auto; }
-    .copy-btn { display: inline-block; background: var(--primary); color: #fff; border: none; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; margin-top: 0.25rem; }
-    .copy-btn:hover { opacity: 0.9; }
-    .copy-btn.copied { background: #059669; }
-    footer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+    /* 表示切り替え */
+    .view-toggle {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      width: fit-content;
+      box-shadow: var(--shadow);
+    }
+    .view-toggle button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-toggle button:hover { color: var(--text); background: var(--bg-card-hover); }
+    .view-toggle button.active { background: var(--primary); color: var(--bg); font-weight: 500; }
+    /* リスト表示 */
+    .prompts-grid { display: flex; flex-direction: column; gap: 1rem; }
+    .prompts-grid.view-tile {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .prompt-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      transition: all 0.2s;
+      box-shadow: var(--shadow);
+    }
+    .prompt-block:hover { border-color: var(--primary); box-shadow: var(--shadow-lg); }
+    .prompts-grid.view-tile .prompt-block {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 140px;
+    }
+    .prompt-num { font-weight: 700; color: var(--primary); margin-right: 0.5rem; font-size: 0.9rem; }
+    .prompt-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; line-height: 1.4; }
+    .prompt-text {
+      white-space: pre-wrap;
+      font-family: "Consolas", "Monaco", "SF Mono", monospace;
+      font-size: 0.8rem;
+      background: rgba(0,0,0,0.2);
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      margin: 0.5rem 0;
+      overflow-x: auto;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .prompts-grid.view-tile .prompt-text {
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: 0.75rem;
+      padding: 0.5rem;
+      margin: 0.5rem 0 0;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--primary);
+      color: var(--bg) !important;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .copy-btn.copied { background: var(--success); }
+    footer { margin-top: 3rem; font-size: 0.85rem; color: var(--muted); text-align: center; }
     /* フローティングナビ */
-    .float-nav { position: fixed; bottom: 1rem; right: 1rem; z-index: 1000; display: flex; flex-direction: column; gap: 0.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-    .float-nav a { display: block; padding: 0.5rem 0.75rem; background: var(--primary); color: #fff !important; text-decoration: none; border-radius: 8px; font-size: 0.85rem; font-weight: 500; text-align: center; }
-    .float-nav a:hover { opacity: 0.9; }
+    .float-nav {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .float-nav a {
+      display: block;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: var(--bg) !important;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .float-nav a:hover { transform: scale(1.05); }
     .float-nav .label { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.25rem; }
-    @media (max-width: 480px) { .float-nav { bottom: 0.5rem; right: 0.5rem; padding: 0.5rem; font-size: 0.8rem; } }
+    @media (max-width: 640px) {
+      .prompts-grid.view-tile { grid-template-columns: 1fr; }
+      .float-nav { bottom: 0.75rem; right: 0.75rem; }
+    }
   </style>
 </head>
 <body>
+  <div class="container">
   <h1>ヨリプラ AIプログラム プロンプト集</h1>
   <p class="subtitle">就活・仕事・生活で使えるプロンプト30本ノック（Geminiなどでコピペして使えます）</p>
+
+  <div class="view-toggle" role="group" aria-label="表示切り替え">
+    <button type="button" id="view-tile" class="view-btn" aria-pressed="false">タイル表示</button>
+    <button type="button" id="view-list" class="view-btn active" aria-pressed="true">リスト表示</button>
+  </div>
 
   <div class="intro">
     <strong>使い方</strong><br>
@@ -63,7 +219,7 @@
   </nav>
 
   <h2 id="shukatsu">就活で使えるプロンプト30本ノック</h2>
-
+  <div class="prompts-grid" id="prompts-grid-shukatsu">
   <div class="prompt-block">
     <div class="prompt-title"><span class="prompt-num">1.</span>自己PR文作成</div>
     <pre class="prompt-text" data-prompt="s1">あなたは就職活動のサポートをする専門家です。自己PR文を作成してください。
@@ -269,9 +425,10 @@
     <pre class="prompt-text" data-prompt="s30">面接後に送るお礼メールの例を作成してください。当日中に送る想定で、簡潔に。</pre>
     <button class="copy-btn" type="button" data-copy="s30">コピー</button>
   </div>
+  </div>
 
   <h2 id="shigoto">仕事で使えるプロンプト30本ノック</h2>
-
+  <div class="prompts-grid" id="prompts-grid-shigoto">
   <div class="prompt-block">
     <div class="prompt-title"><span class="prompt-num">1.</span>メールの下書き</div>
     <pre class="prompt-text" data-prompt="w1">あなたはビジネスメールの作成をサポートする専門家です。
@@ -480,9 +637,10 @@
     <pre class="prompt-text" data-prompt="w30">退職の挨拶メールの例を作成してください。お世話になった感謝を伝える形で、丁寧に。</pre>
     <button class="copy-btn" type="button" data-copy="w30">コピー</button>
   </div>
+  </div>
 
   <h2 id="seikatsu">生活で使えるプロンプト30本ノック</h2>
-
+  <div class="prompts-grid" id="prompts-grid-seikatsu">
   <div class="prompt-block">
     <div class="prompt-title"><span class="prompt-num">1.</span>レシピ提案</div>
     <pre class="prompt-text" data-prompt="l1">あなたは料理のレシピを提案する専門家です。
@@ -685,12 +843,37 @@
     <pre class="prompt-text" data-prompt="l30">[相手]への感謝の気持ちを伝えるメッセージの例を3パターン作ってください。</pre>
     <button class="copy-btn" type="button" data-copy="l30">コピー</button>
   </div>
+  </div>
 
   <footer>
     ヨリプラ AIプログラム用プロンプト集。Gemini等のAIチャットでコピペしてご利用ください。
   </footer>
+  </div>
 
   <script>
+    (function() {
+      var STORAGE_KEY = 'yoripla-prompt-view';
+      var grids = document.querySelectorAll('.prompts-grid');
+      var btnTile = document.getElementById('view-tile');
+      var btnList = document.getElementById('view-list');
+
+      function setView(mode) {
+        var isTile = mode === 'tile';
+        grids.forEach(function(g) { g.classList.toggle('view-tile', isTile); });
+        btnTile.classList.toggle('active', isTile);
+        btnList.classList.toggle('active', !isTile);
+        btnTile.setAttribute('aria-pressed', isTile);
+        btnList.setAttribute('aria-pressed', !isTile);
+        try { localStorage.setItem(STORAGE_KEY, mode); } catch(e) {}
+      }
+
+      btnTile.addEventListener('click', function() { setView('tile'); });
+      btnList.addEventListener('click', function() { setView('list'); });
+
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'tile') setView('tile');
+    })();
+
     document.querySelectorAll('.copy-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var id = this.getAttribute('data-copy');
