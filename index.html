@@ -92,7 +92,7 @@
       gap: 0.5rem;
       flex-shrink: 0;
     }
-    .theme-toggle, .view-toggle {
+    .theme-toggle {
       display: flex;
       gap: 0.25rem;
       padding: 0.25rem 0.35rem;
@@ -101,7 +101,10 @@
       border-radius: var(--radius-sm);
       box-shadow: var(--shadow);
     }
-    .theme-toggle button, .view-toggle button {
+    .theme-toggle button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
       padding: 0.25rem 0.5rem;
       border: none;
       border-radius: 4px;
@@ -111,11 +114,10 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .theme-toggle button:hover, .view-toggle button:hover { color: var(--text); background: var(--bg-card-hover); }
-    .theme-toggle button.active, .view-toggle button.active { background: var(--primary); color: var(--btn-text); font-weight: 500; }
-    /* リスト表示 */
-    .prompts-grid { display: flex; flex-direction: column; gap: 1rem; }
-    .prompts-grid.view-tile {
+    .theme-toggle button:hover { color: var(--text); background: var(--bg-card-hover); }
+    .theme-toggle button.active { background: var(--primary); color: var(--btn-text); font-weight: 500; }
+    /* カード表示（グリッド） */
+    .prompts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1rem;
@@ -129,7 +131,7 @@
       box-shadow: var(--shadow);
     }
     .prompt-block:hover { border-color: var(--primary); box-shadow: var(--shadow-lg); }
-    .prompts-grid.view-tile .prompt-block {
+    .prompts-grid .prompt-block {
       padding: 1rem;
       display: flex;
       flex-direction: column;
@@ -149,7 +151,7 @@
       color: var(--muted);
       line-height: 1.5;
     }
-    .prompts-grid.view-tile .prompt-text {
+    .prompts-grid .prompt-text {
       flex: 1;
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -190,39 +192,39 @@
     .meta-compact .copy-btn { margin: 0; }
     footer { margin-top: 3rem; font-size: 0.85rem; color: var(--muted); text-align: center; }
     /* フローティングナビ */
-    .float-nav {
-      position: fixed;
-      bottom: 1.25rem;
-      right: 1.25rem;
-      z-index: 1000;
+    /* タブナビ */
+    .tab-nav {
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.25rem;
+      margin-bottom: 1.5rem;
+      padding: 0.25rem;
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 0.75rem;
-      box-shadow: var(--shadow-lg);
-    }
-    .float-nav a {
-      display: block;
-      padding: 0.5rem 1rem;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: var(--nav-link-text) !important;
-      text-decoration: none;
       border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-align: center;
-      transition: transform 0.2s;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
     }
-    .float-nav a:hover { transform: scale(1.05); }
-    .float-nav .label { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .tab-nav button {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-nav button:hover { color: var(--text); background: var(--bg-card-hover); }
+    .tab-nav button.active { background: var(--primary); color: var(--btn-text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
     @media (max-width: 640px) {
       .page-header { flex-direction: column; align-items: stretch; }
       .top-controls { justify-content: flex-end; }
-      .prompts-grid.view-tile { grid-template-columns: 1fr; }
-      .float-nav { bottom: 0.75rem; right: 0.75rem; }
+      .prompts-grid { grid-template-columns: 1fr; }
+      .tab-nav { flex-wrap: wrap; }
+      .tab-nav button { flex: 1 1 45%; }
     }
   </style>
 </head>
@@ -232,25 +234,21 @@
     <h1>ヨリプラ AIプログラム プロンプト集</h1>
     <div class="top-controls">
       <div class="theme-toggle" role="group" aria-label="テーマ切り替え">
-        <button type="button" id="theme-dark" class="theme-btn active" aria-pressed="true">ダーク</button>
-        <button type="button" id="theme-light" class="theme-btn" aria-pressed="false">ライト</button>
-      </div>
-      <div class="view-toggle" role="group" aria-label="表示切り替え">
-        <button type="button" id="view-list" class="view-btn active" aria-pressed="true">リスト</button>
-        <button type="button" id="view-tile" class="view-btn" aria-pressed="false">カード</button>
+        <button type="button" id="theme-dark" class="theme-btn active" aria-pressed="true" title="ダークモード">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <span>ダーク</span>
+        </button>
+        <button type="button" id="theme-light" class="theme-btn" aria-pressed="false" title="ライトモード">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <span>ライト</span>
+        </button>
       </div>
     </div>
   </header>
 
   <div class="intro">
     <strong>使い方</strong><br>
-    各プロンプトの「コピー」ボタンを押すと、AIチャット欄に貼り付けてすぐ使えます。ご自身の状況に合わせて、[ ]内を書き換えてください。右下のフローティングボタンで各セクションにすぐ移動できます。
-  </div>
-
-  <div class="prompt-block meta-compact" style="border-left: 4px solid var(--primary);">
-    <span class="prompt-title">メタプロンプト：</span>
-    <pre class="prompt-text" data-prompt="meta">[やりたいこと]ということをしたい。それをAIに頼むためのプロンプトを作って。</pre>
-    <button class="copy-btn" type="button" data-copy="meta">コピー</button>
+    各プロンプトの「コピー」ボタンを押すと、AIチャット欄に貼り付けてすぐ使えます。ご自身の状況に合わせて、[ ]内を書き換えてください。
   </div>
 
   <div class="notice">
@@ -260,16 +258,16 @@
     ・AIの回答は誤りを含む場合があります。考える材料として使い、大事なことは専門家や周りの人と相談してください。
   </div>
 
-  <!-- フローティングナビ -->
-  <nav class="float-nav" aria-label="セクション移動">
-    <span class="label">ジャンプ</span>
-    <a href="#shukatsu">就活</a>
-    <a href="#shigoto">仕事</a>
-    <a href="#seikatsu">生活</a>
+  <nav class="tab-nav" role="tablist" aria-label="セクション切り替え">
+    <button type="button" role="tab" id="tab-shukatsu" aria-selected="true" aria-controls="panel-shukatsu">就活</button>
+    <button type="button" role="tab" id="tab-shigoto" aria-selected="false" aria-controls="panel-shigoto">仕事</button>
+    <button type="button" role="tab" id="tab-seikatsu" aria-selected="false" aria-controls="panel-seikatsu">生活</button>
+    <button type="button" role="tab" id="tab-meta" aria-selected="false" aria-controls="panel-meta">メタプロンプト</button>
   </nav>
 
-  <h2 id="shukatsu">就活で使えるプロンプト30本ノック</h2>
-  <div class="prompts-grid" id="prompts-grid-shukatsu">
+  <div id="panel-shukatsu" class="tab-panel active" role="tabpanel">
+  <h2>就活で使えるプロンプト30本ノック</h2>
+  <div class="prompts-grid">
   <div class="prompt-block">
     <div class="prompt-title"><span class="prompt-num">1.</span>自己PR文作成</div>
     <pre class="prompt-text" data-prompt="s1">あなたは就職活動のサポートをする専門家です。自己PR文を作成してください。
@@ -476,9 +474,11 @@
     <button class="copy-btn" type="button" data-copy="s30">コピー</button>
   </div>
   </div>
+  </div>
 
-  <h2 id="shigoto">仕事で使えるプロンプト30本ノック</h2>
-  <div class="prompts-grid" id="prompts-grid-shigoto">
+  <div id="panel-shigoto" class="tab-panel" role="tabpanel">
+  <h2>仕事で使えるプロンプト30本ノック</h2>
+  <div class="prompts-grid">
   <div class="prompt-block">
     <div class="prompt-title"><span class="prompt-num">1.</span>メールの下書き</div>
     <pre class="prompt-text" data-prompt="w1">あなたはビジネスメールの作成をサポートする専門家です。
@@ -688,9 +688,11 @@
     <button class="copy-btn" type="button" data-copy="w30">コピー</button>
   </div>
   </div>
+  </div>
 
-  <h2 id="seikatsu">生活で使えるプロンプト30本ノック</h2>
-  <div class="prompts-grid" id="prompts-grid-seikatsu">
+  <div id="panel-seikatsu" class="tab-panel" role="tabpanel">
+  <h2>生活で使えるプロンプト30本ノック</h2>
+  <div class="prompts-grid">
   <div class="prompt-block">
     <div class="prompt-title"><span class="prompt-num">1.</span>レシピ提案</div>
     <pre class="prompt-text" data-prompt="l1">あなたは料理のレシピを提案する専門家です。
@@ -894,6 +896,18 @@
     <button class="copy-btn" type="button" data-copy="l30">コピー</button>
   </div>
   </div>
+  </div>
+
+  <div id="panel-meta" class="tab-panel" role="tabpanel">
+  <h2>メタプロンプト</h2>
+  <p style="margin-bottom: 1rem; font-size: 0.95rem; color: var(--muted);">プロンプトの書き方に迷ったら、このプロンプトでAIにプロンプト案を出してもらえます。</p>
+  <div class="prompt-block meta-compact" style="border-left: 4px solid var(--primary);">
+    <span class="prompt-title">メタプロンプト：</span>
+    <pre class="prompt-text" data-prompt="meta">[やりたいこと]ということをしたい。それをAIに頼むためのプロンプトを作って。</pre>
+    <button class="copy-btn" type="button" data-copy="meta">コピー</button>
+  </div>
+  <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted);">例：「就活の自己PR文を書きたい。プロンプトを作って」「上司に会議を遅らせたいと伝えるメールを書きたい。プロンプトを作って」</p>
+  </div>
 
   <footer>
     ヨリプラ AIプログラム用プロンプト集。Gemini等のAIチャットでコピペしてご利用ください。
@@ -902,23 +916,12 @@
 
   <script>
     (function() {
-      var VIEW_KEY = 'yoripla-prompt-view';
       var THEME_KEY = 'yoripla-theme';
-      var grids = document.querySelectorAll('.prompts-grid');
-      var btnTile = document.getElementById('view-tile');
-      var btnList = document.getElementById('view-list');
+      var TAB_KEY = 'yoripla-tab';
       var btnThemeDark = document.getElementById('theme-dark');
       var btnThemeLight = document.getElementById('theme-light');
-
-      function setView(mode) {
-        var isTile = mode === 'tile';
-        grids.forEach(function(g) { g.classList.toggle('view-tile', isTile); });
-        btnTile.classList.toggle('active', isTile);
-        btnList.classList.toggle('active', !isTile);
-        btnTile.setAttribute('aria-pressed', isTile);
-        btnList.setAttribute('aria-pressed', !isTile);
-        try { localStorage.setItem(VIEW_KEY, mode); } catch(e) {}
-      }
+      var tabs = document.querySelectorAll('.tab-nav button');
+      var panels = document.querySelectorAll('.tab-panel');
 
       function setTheme(mode) {
         var isLight = mode === 'light';
@@ -930,15 +933,32 @@
         try { localStorage.setItem(THEME_KEY, mode); } catch(e) {}
       }
 
-      btnTile.addEventListener('click', function() { setView('tile'); });
-      btnList.addEventListener('click', function() { setView('list'); });
+      function setTab(id) {
+        tabs.forEach(function(t) {
+          var isActive = t.id === 'tab-' + id;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive);
+        });
+        panels.forEach(function(p) {
+          p.classList.toggle('active', p.id === 'panel-' + id);
+        });
+        try { localStorage.setItem(TAB_KEY, id); } catch(e) {}
+      }
+
       btnThemeDark.addEventListener('click', function() { setTheme('dark'); });
       btnThemeLight.addEventListener('click', function() { setTheme('light'); });
 
-      var savedView = localStorage.getItem(VIEW_KEY);
-      if (savedView === 'tile') setView('tile');
+      tabs.forEach(function(t) {
+        t.addEventListener('click', function() {
+          var id = t.id.replace('tab-', '');
+          setTab(id);
+        });
+      });
+
       var savedTheme = localStorage.getItem(THEME_KEY);
       if (savedTheme === 'light') setTheme('light');
+      var savedTab = localStorage.getItem(TAB_KEY);
+      if (savedTab && ['shukatsu','shigoto','seikatsu','meta'].indexOf(savedTab) >= 0) setTab(savedTab);
     })();
 
     document.querySelectorAll('.copy-btn').forEach(function(btn) {
