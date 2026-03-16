@@ -190,7 +190,7 @@
     .meta-compact .prompt-title { margin: 0; font-size: 0.9rem; }
     .meta-compact .prompt-text { margin: 0; padding: 0.35rem 0.6rem; font-size: 0.8rem; flex: 1; min-width: 200px; }
     .meta-compact .copy-btn { margin: 0; }
-    footer { margin-top: 3rem; font-size: 0.85rem; color: var(--muted); text-align: center; }
+    footer { margin-top: 3rem; font-size: 0.75rem; color: var(--muted); text-align: center; }
     /* フローティングナビ */
     /* タブナビ */
     .tab-nav {
@@ -219,6 +219,25 @@
     .tab-nav button.active { background: var(--primary); color: var(--btn-text); }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
+    /* 検索バー */
+    .search-bar {
+      margin-bottom: 1.5rem;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 0.6rem 1rem 0.6rem 2.5rem;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      color: var(--text);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 0.75rem center;
+    }
+    .search-bar input::placeholder { color: var(--muted); }
+    .search-bar input:focus { outline: none; border-color: var(--primary); }
+    .prompt-block.search-hidden { display: none !important; }
     @media (max-width: 640px) {
       .page-header { flex-direction: column; align-items: stretch; }
       .top-controls { justify-content: flex-end; }
@@ -264,6 +283,10 @@
     <button type="button" role="tab" id="tab-seikatsu" aria-selected="false" aria-controls="panel-seikatsu">生活</button>
     <button type="button" role="tab" id="tab-meta" aria-selected="false" aria-controls="panel-meta">メタプロンプト</button>
   </nav>
+
+  <div class="search-bar">
+    <input type="search" id="search-input" placeholder="プロンプトを検索..." aria-label="プロンプトを検索" autocomplete="off">
+  </div>
 
   <div id="panel-shukatsu" class="tab-panel active" role="tabpanel">
   <h2>就活で使えるプロンプト30本ノック</h2>
@@ -910,7 +933,8 @@
   </div>
 
   <footer>
-    ヨリプラ AIプログラム用プロンプト集。Gemini等のAIチャットでコピペしてご利用ください。
+    © LITALICOワークス 2026<br>
+    本サイトをご自身の就職活動等に用いる以外の目的で使用すること（SNS等での公開、無断転載）は禁じます。
   </footer>
   </div>
 
@@ -948,12 +972,27 @@
       btnThemeDark.addEventListener('click', function() { setTheme('dark'); });
       btnThemeLight.addEventListener('click', function() { setTheme('light'); });
 
+      function filterSearch() {
+        var q = (document.getElementById('search-input').value || '').trim().toLowerCase();
+        var activePanel = document.querySelector('.tab-panel.active');
+        if (!activePanel) return;
+        var blocks = activePanel.querySelectorAll('.prompt-block');
+        blocks.forEach(function(b) {
+          var title = (b.querySelector('.prompt-title') || {}).textContent || '';
+          var text = (b.querySelector('.prompt-text') || {}).textContent || '';
+          var match = !q || title.toLowerCase().indexOf(q) >= 0 || text.toLowerCase().indexOf(q) >= 0;
+          b.classList.toggle('search-hidden', !match);
+        });
+      }
+
       tabs.forEach(function(t) {
         t.addEventListener('click', function() {
           var id = t.id.replace('tab-', '');
           setTab(id);
+          setTimeout(filterSearch, 0);
         });
       });
+      document.getElementById('search-input').addEventListener('input', filterSearch);
 
       var savedTheme = localStorage.getItem(THEME_KEY);
       if (savedTheme === 'light') setTheme('light');
