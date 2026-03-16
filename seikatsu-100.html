@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生活で使えるプロンプト100本ノック | ヨリプラ AIプログラム</title>
+  <style>
+    :root { --bg: #fafafa; --card: #fff; --border: #e5e7eb; --primary: #2563eb; --text: #1f2937; --muted: #6b7280; }
+    * { box-sizing: border-box; }
+    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .nav a { color: var(--primary); }
+    h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .intro, .notice { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .notice { border-left: 4px solid #f59e0b; }
+    .prompt-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .prompt-num { font-weight: 700; color: var(--primary); margin-right: 0.5rem; }
+    .prompt-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .prompt-text { white-space: pre-wrap; font-family: "Consolas", "Monaco", monospace; font-size: 0.8rem; background: #f8fafc; padding: 0.75rem; border-radius: 4px; margin: 0.5rem 0; overflow-x: auto; }
+    .copy-btn { display: inline-block; background: var(--primary); color: #fff; border: none; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; margin-top: 0.25rem; }
+    .copy-btn:hover { opacity: 0.9; }
+    .copy-btn.copied { background: #059669; }
+    footer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a href="index.html">← プロンプト集トップ</a> | <a href="shukatsu-100.html">就活100本ノック</a> | <a href="shigoto-100.html">仕事100本ノック</a></nav>
+
+  <h1>生活で使えるプロンプト100本ノック</h1>
+  <p class="subtitle">生活に役立つプロンプトを100本集めました。レシピ・悩み整理・通院・趣味など。コピペしてGeminiなどで試してみてください。（随時追加中）</p>
+
+  <div class="intro">
+    <strong>使い方</strong><br>
+    番号順に試したり、気になるものから選んで使ってください。「コピー」ボタンでAIチャットに貼り付けられます。[ ]内はご自身の内容に書き換えてください。
+  </div>
+
+  <div class="notice">
+    <strong>ご利用時の注意</strong><br>
+    ・個人情報（氏名・住所・病歴など）を入力しないでください。<br>
+    ・服薬・医療の判断は医師に相談してください。AIの出力をそのまま参照しないでください。<br>
+    ・AIの回答は誤りを含む場合があります。考える材料として使い、大事なことは専門家や周りの人と相談してください。
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">1.</span>レシピ提案</div>
+    <pre class="prompt-text" data-prompt="l1">あなたは料理のレシピを提案する専門家です。
+以下の条件でレシピを提案してください。
+
+条件：使いたい食材：[食材を書く] 調理時間：[時間を書く] 難易度：[簡単/普通/難しい]
+制約：手順をわかりやすく、分量も含める、箇条書きで</pre>
+    <button class="copy-btn" type="button" data-copy="l1">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">2.</span>今の気分に合うレシピ</div>
+    <pre class="prompt-text" data-prompt="l2">今の気分に合う簡単なレシピを1つ提案して。材料は3〜4品目までで。</pre>
+    <button class="copy-btn" type="button" data-copy="l2">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">3.</span>献立・レシピ（条件付き）</div>
+    <pre class="prompt-text" data-prompt="l3">【条件】大人2人、調理時間20分以内、冷蔵庫の食材を使い切りたい
+【今日の食材】[食材を書く]
+【お願い】3つの献立案を出して、作り方も簡潔に</pre>
+    <button class="copy-btn" type="button" data-copy="l3">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">4.</span>悩みごとの整理</div>
+    <pre class="prompt-text" data-prompt="l4">あなたは悩みごとを整理するサポートをする専門家です。
+以下の悩みごとを整理して、考えられる解決策を提案してください。
+
+悩みごと：[悩みを書く]
+
+制約：悩みを3つのポイントに整理、それぞれの解決策を2つずつ提案、前向きで建設的なアドバイス、箇条書きで</pre>
+    <button class="copy-btn" type="button" data-copy="l4">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">5.</span>悩みを整理する質問例</div>
+    <pre class="prompt-text" data-prompt="l5">悩みごとを整理するとき、自分に質問する例を5つ挙げて。</pre>
+    <button class="copy-btn" type="button" data-copy="l5">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">6.</span>趣味を探す</div>
+    <pre class="prompt-text" data-prompt="l6">「初心者向けの趣味」を3つ提案して。それぞれ1行で説明して。</pre>
+    <button class="copy-btn" type="button" data-copy="l6">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">7.</span>通院のときの体調説明</div>
+    <pre class="prompt-text" data-prompt="l7">あなたは医療機関で患者の説明を整理するサポートをする専門家です。
+通院のとき、医師に伝えるための体調の説明文を整理してください。
+
+現在の症状：[症状を書く]
+いつから：[時期]
+どの程度か：[頻度・程度・気になること]
+飲んでいる薬・持病：[あれば書く]
+
+制約：短く要点だけ、箇条書きで2〜3分で話せる分量</pre>
+    <button class="copy-btn" type="button" data-copy="l7">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">8.</span>体調管理のアドバイス</div>
+    <pre class="prompt-text" data-prompt="l8">あなたは体調管理をサポートする専門家です。
+体調を記録・管理するためのアドバイスをしてください。
+
+知りたいこと：体調を記録するときのポイント、体調の波があるときの過ごし方、通院や服薬を忘れない工夫 など
+制約：無理のない範囲で、箇条書きで、3〜5つのポイントにまとめて</pre>
+    <button class="copy-btn" type="button" data-copy="l8">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">9.</span>医師への体調メモ整理</div>
+    <pre class="prompt-text" data-prompt="l9">上記の状況を、医師に見せるように箇条書きにしてください。
+
+※日々の症状メモを書いたあと、この1行を追記して送信</pre>
+    <button class="copy-btn" type="button" data-copy="l9">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">10.</span>カウンセラー役</div>
+    <pre class="prompt-text" data-prompt="l10">あなたはカウンセラーです。私の悩みについて、一つずつ質問をして、私が整理できるように手助けしてください。急がず、じっくり進めてください。</pre>
+    <button class="copy-btn" type="button" data-copy="l10">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">11.</span>記事の要点要約</div>
+    <pre class="prompt-text" data-prompt="l11">以下の記事の要点を3つにまとめてください。
+
+[ここに記事を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="l11">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">12.</span>体調記録のポイント</div>
+    <pre class="prompt-text" data-prompt="l12">体調を記録するときのポイント・項目の例を5つ教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l12">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">13.</span>体調の波への対処</div>
+    <pre class="prompt-text" data-prompt="l13">体調の波があるときの過ごし方のコツを、3〜5つ箇条書きで教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l13">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">14.</span>服薬を忘れない工夫</div>
+    <pre class="prompt-text" data-prompt="l14">通院や服薬を忘れがちです。忘れないための工夫を、無理のない範囲で3つ提案してください。</pre>
+    <button class="copy-btn" type="button" data-copy="l14">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">15.</span>問診の整理（インタビュー形式）</div>
+    <pre class="prompt-text" data-prompt="l15">あなたは優秀なナースです。体調が優れなくこれから病院に行きます。医師に体調を伝えたく、現状の体調を一緒に整理してくれますか？</pre>
+    <button class="copy-btn" type="button" data-copy="l15">コピー</button>
+  </div>
+
+  <p class="subtitle" style="margin-top: 2rem;">※16本目以降は随時追加予定です。まずは1〜15を試してみてください。</p>
+
+  <footer>
+    <a href="index.html">プロンプト集トップ</a> | ヨリプラ AIプログラム
+  </footer>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = this.getAttribute('data-copy');
+        var pre = document.querySelector('.prompt-text[data-prompt="' + id + '"]');
+        var text = pre ? pre.textContent : '';
+        navigator.clipboard.writeText(text).then(function() {
+          btn.textContent = 'コピーしました';
+          btn.classList.add('copied');
+          setTimeout(function() { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 2000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仕事で使えるプロンプト100本ノック | ヨリプラ AIプログラム</title>
+  <style>
+    :root { --bg: #fafafa; --card: #fff; --border: #e5e7eb; --primary: #2563eb; --text: #1f2937; --muted: #6b7280; }
+    * { box-sizing: border-box; }
+    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .nav a { color: var(--primary); }
+    h1 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .intro, .notice { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
+    .notice { border-left: 4px solid #f59e0b; }
+    .prompt-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .prompt-num { font-weight: 700; color: var(--primary); margin-right: 0.5rem; }
+    .prompt-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .prompt-text { white-space: pre-wrap; font-family: "Consolas", "Monaco", monospace; font-size: 0.8rem; background: #f8fafc; padding: 0.75rem; border-radius: 4px; margin: 0.5rem 0; overflow-x: auto; }
+    .copy-btn { display: inline-block; background: var(--primary); color: #fff; border: none; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; margin-top: 0.25rem; }
+    .copy-btn:hover { opacity: 0.9; }
+    .copy-btn.copied { background: #059669; }
+    footer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <nav class="nav"><a href="index.html">← プロンプト集トップ</a> | <a href="shukatsu-100.html">就活100本ノック</a> | <a href="seikatsu-100.html">生活100本ノック</a></nav>
+
+  <h1>仕事で使えるプロンプト100本ノック</h1>
+  <p class="subtitle">仕事に役立つプロンプトを100本集めました。コピペしてGeminiなどで試してみてください。（随時追加中）</p>
+
+  <div class="intro">
+    <strong>使い方</strong><br>
+    番号順に試したり、気になるものから選んで使ってください。「コピー」ボタンでAIチャットに貼り付けられます。[ ]内はご自身の内容に書き換えてください。
+  </div>
+
+  <div class="notice">
+    <strong>ご利用時の注意</strong><br>
+    ・個人情報・会社の機密情報を入力しないでください。<br>
+    ・AIの回答は誤りを含む場合があります。最終的にはご自身で確認・修正してください。
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">1.</span>メールの下書き</div>
+    <pre class="prompt-text" data-prompt="w1">あなたはビジネスメールの作成をサポートする専門家です。
+以下の内容でメールの下書きを作成してください。
+
+宛先：[上司/同僚/取引先など]
+件名：[件名を書く]
+内容：[伝えたい内容を書く]
+
+制約：丁寧で簡潔、要件を明確に、必要に応じて謝罪や感謝の言葉を含める</pre>
+    <button class="copy-btn" type="button" data-copy="w1">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">2.</span>会議を遅らせたいときのメール</div>
+    <pre class="prompt-text" data-prompt="w2">上司に、明日の会議を1時間遅らせたいと伝えるメールの下書きを作成して。丁寧で簡潔に。理由（体調不良など）を簡潔に含める。</pre>
+    <button class="copy-btn" type="button" data-copy="w2">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">3.</span>報告書の構成</div>
+    <pre class="prompt-text" data-prompt="w3">あなたはビジネス文書の作成をサポートする専門家です。
+以下の内容で報告書の構成を考えてください。
+
+報告内容：[何について報告するか]
+対象読者：[誰に報告するか]
+
+制約：見出しと箇条書きで構成、重要なポイントを最初に、A4用紙1枚程度</pre>
+    <button class="copy-btn" type="button" data-copy="w3">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">4.</span>議事録のポイント</div>
+    <pre class="prompt-text" data-prompt="w4">会議の議事録で押さえるべきポイントを、5つ箇条書きで教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="w4">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">5.</span>議事録の要約</div>
+    <pre class="prompt-text" data-prompt="w5">あなたは議事録を整理するサポートをする専門家です。
+以下の会議メモを要約し、決定事項・TODO・次回日程を箇条書きで整理してください。
+
+【会議メモをここに貼る】</pre>
+    <button class="copy-btn" type="button" data-copy="w5">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">6.</span>報告の伝え方</div>
+    <pre class="prompt-text" data-prompt="w6">上司に「会議を1時間遅らせたい」と伝えたいです。どう言うと伝わりやすいか、いくつかパターンを提案してください。</pre>
+    <button class="copy-btn" type="button" data-copy="w6">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">7.</span>議事録の詳細要約</div>
+    <pre class="prompt-text" data-prompt="w7">あなたは経験豊富な議事録作成者です。以下の会議テキストから、決定事項・議論の要点・各担当者へのアクションアイテムと期日を抽出してまとめてください。箇条書きで簡潔に。
+
+[ここに会議メモを貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="w7">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">8.</span>報告書の基本構成</div>
+    <pre class="prompt-text" data-prompt="w8">報告書を書くときの基本構成（見出しの例）を5つ挙げて。</pre>
+    <button class="copy-btn" type="button" data-copy="w8">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">9.</span>謝罪メール</div>
+    <pre class="prompt-text" data-prompt="w9">あなたはビジネスメールの作成をサポートする専門家です。
+[遅刻/ミス/納期遅れなど]について、上司に謝罪するメールの下書きを作成してください。
+
+状況：[簡潔に書く]
+制約：丁寧で簡潔、謝罪の言葉、今後の対応を明記</pre>
+    <button class="copy-btn" type="button" data-copy="w9">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">10.</span>お礼メール</div>
+    <pre class="prompt-text" data-prompt="w10">取引先へのお礼メールの下書きを作成してください。
+
+宛先：[相手]
+お礼の内容：[何についてお礼か]
+制約：丁寧で簡潔、200〜300文字程度</pre>
+    <button class="copy-btn" type="button" data-copy="w10">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">11.</span>マニュアルの構成</div>
+    <pre class="prompt-text" data-prompt="w11">[業務名]のマニュアルを作る時の構成の例を教えて。新入社員向けに、手順を追いやすい形式で。</pre>
+    <button class="copy-btn" type="button" data-copy="w11">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">12.</span>プレゼンの構成</div>
+    <pre class="prompt-text" data-prompt="w12">[テーマ]について5分でプレゼンするときの構成例を教えて。スライドの枚数と各スライドの内容を簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="w12">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">13.</span>長い文章の要約</div>
+    <pre class="prompt-text" data-prompt="w13">以下の文章を3つのポイントに要約してください。
+
+[ここに文章を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="w13">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">14.</span>アジェンダ作成</div>
+    <pre class="prompt-text" data-prompt="w14">[会議の目的]のための1時間会議のアジェンダを作成してください。時間配分も含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="w14">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">15.</span>依頼メール</div>
+    <pre class="prompt-text" data-prompt="w15">同僚に[タスク内容]を依頼するメールの下書きを作成してください。期限と依頼理由を簡潔に含めて。丁寧で読みやすいトーンで。</pre>
+    <button class="copy-btn" type="button" data-copy="w15">コピー</button>
+  </div>
+
+  <p class="subtitle" style="margin-top: 2rem;">※16本目以降は随時追加予定です。まずは1〜15を試してみてください。</p>
+
+  <footer>
+    <a href="index.html">プロンプト集トップ</a> | ヨリプラ AIプログラム
+  </footer>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = this.getAttribute('data-copy');
+        var pre = document.querySelector('.prompt-text[data-prompt="' + id + '"]');
+        var text = pre ? pre.textContent : '';
+        navigator.clipboard.writeText(text).then(function() {
+          btn.textContent = 'コピーしました';
+          btn.classList.add('copied');
+          setTimeout(function() { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 2000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
