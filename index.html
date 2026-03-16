@@ -7,28 +7,36 @@
   <style>
     :root { --bg: #fafafa; --card: #fff; --border: #e5e7eb; --primary: #2563eb; --text: #1f2937; --muted: #6b7280; }
     * { box-sizing: border-box; }
-    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; margin: 0; padding: 2rem 1rem 4rem; max-width: 720px; margin-left: auto; margin-right: auto; }
     h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
     .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
     .intro, .notice { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.9rem; }
     .notice { border-left: 4px solid #f59e0b; }
-    h2 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    h2 { font-size: 1.15rem; margin-top: 2rem; margin-bottom: 1rem; padding-top: 0.5rem; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; }
+    h2:first-of-type { margin-top: 0; }
     .prompt-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .prompt-num { font-weight: 700; color: var(--primary); margin-right: 0.5rem; }
     .prompt-title { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
     .prompt-text { white-space: pre-wrap; font-family: "Consolas", "Monaco", monospace; font-size: 0.8rem; background: #f8fafc; padding: 0.75rem; border-radius: 4px; margin: 0.5rem 0; overflow-x: auto; }
     .copy-btn { display: inline-block; background: var(--primary); color: #fff; border: none; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; margin-top: 0.25rem; }
     .copy-btn:hover { opacity: 0.9; }
     .copy-btn.copied { background: #059669; }
     footer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+    /* フローティングナビ */
+    .float-nav { position: fixed; bottom: 1rem; right: 1rem; z-index: 1000; display: flex; flex-direction: column; gap: 0.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .float-nav a { display: block; padding: 0.5rem 0.75rem; background: var(--primary); color: #fff !important; text-decoration: none; border-radius: 8px; font-size: 0.85rem; font-weight: 500; text-align: center; }
+    .float-nav a:hover { opacity: 0.9; }
+    .float-nav .label { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.25rem; }
+    @media (max-width: 480px) { .float-nav { bottom: 0.5rem; right: 0.5rem; padding: 0.5rem; font-size: 0.8rem; } }
   </style>
 </head>
 <body>
   <h1>ヨリプラ AIプログラム プロンプト集</h1>
-  <p class="subtitle">就活・仕事・生活で使えるプロンプト例（Geminiなどでコピペして使えます）</p>
+  <p class="subtitle">就活・仕事・生活で使えるプロンプト30本ノック（Geminiなどでコピペして使えます）</p>
 
   <div class="intro">
     <strong>使い方</strong><br>
-    各プロンプトの「コピー」ボタンを押すと、AIチャット欄に貼り付けてすぐ使えます。ご自身の状況に合わせて、[ ]内を書き換えたり、言葉を足したりして使ってください。
+    各プロンプトの「コピー」ボタンを押すと、AIチャット欄に貼り付けてすぐ使えます。ご自身の状況に合わせて、[ ]内を書き換えてください。右下のフローティングボタンで各セクションにすぐ移動できます。
   </div>
 
   <div class="prompt-block" style="border-left: 4px solid var(--primary);">
@@ -46,229 +54,636 @@
     ・AIの回答は誤りを含む場合があります。考える材料として使い、大事なことは専門家や周りの人と相談してください。
   </div>
 
-  <div class="intro" style="background: #eff6ff; border-color: #93c5fd;">
-    <strong>プロンプト100本ノック（自主練習用）</strong><br>
-    <a href="shukatsu-100.html">就職活動で使えるプロンプト100本ノック</a> |
-    <a href="shigoto-100.html">仕事で使えるプロンプト100本ノック</a> |
-    <a href="seikatsu-100.html">生活で使えるプロンプト100本ノック</a>
-  </div>
+  <!-- フローティングナビ -->
+  <nav class="float-nav" aria-label="セクション移動">
+    <span class="label">ジャンプ</span>
+    <a href="#shukatsu">就活</a>
+    <a href="#shigoto">仕事</a>
+    <a href="#seikatsu">生活</a>
+  </nav>
 
-  <h2>就活編</h2>
+  <h2 id="shukatsu">就活で使えるプロンプト30本ノック</h2>
 
   <div class="prompt-block">
-    <div class="prompt-title">自己PR文作成</div>
-    <pre class="prompt-text" data-prompt="selfpr">あなたは就職活動のサポートをする専門家です。
-自己PR文を作成してください。
+    <div class="prompt-title"><span class="prompt-num">1.</span>自己PR文作成</div>
+    <pre class="prompt-text" data-prompt="s1">あなたは就職活動のサポートをする専門家です。自己PR文を作成してください。
 
 私の特徴：
 - [ここに自分の特徴を書く]
 - [ここに自分の特徴を書く]
-- [ここに自分の特徴を書く]
 
-制約：
-- 400文字程度
-- 前向きで具体的
-- 箇条書きで3つのポイントを挙げてから、文章にする</pre>
-    <button class="copy-btn" type="button" data-copy="selfpr">コピー</button>
+制約：400文字程度、前向きで具体的、箇条書きで3つのポイントを挙げてから文章にする</pre>
+    <button class="copy-btn" type="button" data-copy="s1">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">面接練習（長所・短所など）</div>
-    <pre class="prompt-text" data-prompt="interview">あなたは面接の練習をサポートする専門家です。
-以下の質問への回答を考えてください。
+    <div class="prompt-title"><span class="prompt-num">2.</span>面接練習（長所・短所）</div>
+    <pre class="prompt-text" data-prompt="s2">あなたは面接の練習をサポートする専門家です。「あなたの長所と短所を教えてください」への回答を考えてください。
 
-質問：「あなたの長所と短所を教えてください」
-
-私の情報：
-- 長所：[ここに長所を書く]
-- 短所：[ここに短所を書く]
-
-制約：
-- 2分程度で話せる分量
-- 短所は改善の努力をしていることも含める
-- 前向きなトーン</pre>
-    <button class="copy-btn" type="button" data-copy="interview">コピー</button>
+私の情報：長所：[書く] 短所：[書く]
+制約：2分程度で話せる分量、短所は改善の努力も含める、前向きなトーン</pre>
+    <button class="copy-btn" type="button" data-copy="s2">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">面接でよく聞かれる質問3つ</div>
-    <pre class="prompt-text" data-prompt="interview3">就活の面接でよく聞かれる質問を3つ教えて。それぞれへの回答のポイントも簡潔に。</pre>
-    <button class="copy-btn" type="button" data-copy="interview3">コピー</button>
+    <div class="prompt-title"><span class="prompt-num">3.</span>面接でよく聞かれる質問3つ</div>
+    <pre class="prompt-text" data-prompt="s3">就活の面接でよく聞かれる質問を3つ教えて。それぞれへの回答のポイントも簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="s3">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">志望動機の下書き</div>
-    <pre class="prompt-text" data-prompt="shibou">あなたは就職活動のサポートをする専門家です。
-志望動機の下書きを作成してください。
+    <div class="prompt-title"><span class="prompt-num">4.</span>志望動機の下書き</div>
+    <pre class="prompt-text" data-prompt="s4">あなたは就職活動のサポートをする専門家です。志望動機の下書きを作成してください。
 
-質問：「志望動機を教えてください」
-
-私の情報：
-- 志望理由：[ここに志望理由を書く]
-- 会社について知っていること：[ここに知っていることを書く]
-
-制約：
-- 300文字程度
-- 具体的で説得力がある
-- 箇条書きで構成を考えてから、文章にする</pre>
-    <button class="copy-btn" type="button" data-copy="shibou">コピー</button>
+私の情報：志望理由：[書く] 会社について知っていること：[書く]
+制約：300文字程度、具体的で説得力がある</pre>
+    <button class="copy-btn" type="button" data-copy="s4">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">企業への応募メール</div>
-    <pre class="prompt-text" data-prompt="applymail">あなたは就職活動のサポートをする専門家です。
-メールで企業に応募するときのメール文を作成してください。
+    <div class="prompt-title"><span class="prompt-num">5.</span>企業への応募メール</div>
+    <pre class="prompt-text" data-prompt="s5">あなたは就職活動のサポートをする専門家です。メールで企業に応募するときのメール文を作成してください。
 
 応募先：[企業名・採用担当など]
-応募したい職種・ポジション：[ここに書く]
+応募したい職種：[書く]
 私の簡単な自己紹介：[学歴・経験・アピールポイントを1〜2行で]
-
-制約：
-- 件名は応募意図が伝わるように
-- 挨拶・応募の旨・自己紹介・連絡先の希望を簡潔に
-- 丁寧で読みやすい長さ（200〜300文字程度）</pre>
-    <button class="copy-btn" type="button" data-copy="applymail">コピー</button>
+制約：件名は応募意図が伝わるように、200〜300文字程度</pre>
+    <button class="copy-btn" type="button" data-copy="s5">コピー</button>
   </div>
 
-  <h2>仕事編</h2>
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">6.</span>面接官役でロープレ</div>
+    <pre class="prompt-text" data-prompt="s6">あなたは面接官です。私に「長所と短所を教えてください」と質問し、私が答えたらフィードバックをください。</pre>
+    <button class="copy-btn" type="button" data-copy="s6">コピー</button>
+  </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">メールの下書き</div>
-    <pre class="prompt-text" data-prompt="mail">あなたはビジネスメールの作成をサポートする専門家です。
+    <div class="prompt-title"><span class="prompt-num">7.</span>志望動機の構成</div>
+    <pre class="prompt-text" data-prompt="s7">志望動機を書くときの構成の例を、3ステップで簡潔に教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="s7">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">8.</span>ES・志望動機の要約</div>
+    <pre class="prompt-text" data-prompt="s8">以下の志望動機の下書きを、3つのポイントに要約してください。
+
+[ここに文章を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="s8">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">9.</span>就活の悩み相談</div>
+    <pre class="prompt-text" data-prompt="s9">就活がうまくいかず落ち込んでいます。この気持ちを3つに分けて、それぞれへの対処法を提案してください。</pre>
+    <button class="copy-btn" type="button" data-copy="s9">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">10.</span>自己PRの改善点</div>
+    <pre class="prompt-text" data-prompt="s10">以下のエピソードから、企業の面接官に響く自己PR文（300文字）を作ってください。改善点と面接で話す際のポイントも教えてください。
+
+エピソード：[ここに自分の経験を書く]</pre>
+    <button class="copy-btn" type="button" data-copy="s10">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">11.</span>業界別の面接質問</div>
+    <pre class="prompt-text" data-prompt="s11">[業界名]の面接でよく聞かれる質問を5つ教えて。それぞれへの回答のポイントも簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="s11">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">12.</span>ガクチカ（学生時代に力を入れたこと）</div>
+    <pre class="prompt-text" data-prompt="s12">あなたは就職活動のサポートをする専門家です。「学生時代に力を入れたこと」の回答を作成してください。
+
+私の経験：[ここに書く]
+制約：400文字程度、具体的なエピソードを含める、学びや成長を明確に</pre>
+    <button class="copy-btn" type="button" data-copy="s12">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">13.</span>逆質問の例</div>
+    <pre class="prompt-text" data-prompt="s13">面接の最後に「何か質問はありますか？」と聞かれたときの逆質問の例を5つ教えて。それぞれ、どんな意図で聞くといいかも簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="s13">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">14.</span>職務経歴書の構成</div>
+    <pre class="prompt-text" data-prompt="s14">職務経歴書を書くときの基本構成（見出しの例）を教えて。転職活動向けで、簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="s14">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">15.</span>面接の挨拶・自己紹介</div>
+    <pre class="prompt-text" data-prompt="s15">面接の最初の自己紹介（30秒〜1分程度）の例を作成してください。名前・大学・志望動機の要点を含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="s15">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">16.</span>自己分析の質問例</div>
+    <pre class="prompt-text" data-prompt="s16">自己分析をするとき、自分に問いかける質問の例を10個挙げて。就活で使えるように。</pre>
+    <button class="copy-btn" type="button" data-copy="s16">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">17.</span>企業研究のポイント</div>
+    <pre class="prompt-text" data-prompt="s17">就活で企業を研究するとき、押さえるべきポイントを5つ教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="s17">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">18.</span>志望動機の添削</div>
+    <pre class="prompt-text" data-prompt="s18">以下の志望動機を添削してください。改善点と、より説得力を持たせるためのアドバイスを教えて。
+
+[志望動機を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="s18">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">19.</span>面接の服装・マナー</div>
+    <pre class="prompt-text" data-prompt="s19">就活の面接で気をつけるべき服装とマナーを、5つ箇条書きで教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="s19">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">20.</span>オンライン面接のコツ</div>
+    <pre class="prompt-text" data-prompt="s20">オンライン面接で気をつけるべきポイントを5つ教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="s20">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">21.</span>チームワークのエピソード</div>
+    <pre class="prompt-text" data-prompt="s21">「チームで力を合わせた経験」を面接で話すときの構成例を教えて。具体例の入れ方も含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="s21">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">22.</span>挫折・失敗からの学び</div>
+    <pre class="prompt-text" data-prompt="s22">「挫折や失敗から学んだこと」を面接で話すときのポイントを教えて。前向きに伝えるコツも含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="s22">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">23.</span>説明会での質問例</div>
+    <pre class="prompt-text" data-prompt="s23">企業の説明会で質問するときの例を5つ教えて。企業の雰囲気や働き方が分かる質問を。</pre>
+    <button class="copy-btn" type="button" data-copy="s23">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">24.</span>内定お礼メール</div>
+    <pre class="prompt-text" data-prompt="s24">内定をもらったあと、企業に送るお礼メールの例を作成してください。丁寧で簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="s24">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">25.</span>内定辞退の伝え方</div>
+    <pre class="prompt-text" data-prompt="s25">内定を辞退するとき、企業に伝えるメールの書き方のポイントを教えて。丁寧に伝えるコツを。</pre>
+    <button class="copy-btn" type="button" data-copy="s25">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">26.</span>転職理由の書き方</div>
+    <pre class="prompt-text" data-prompt="s26">転職理由を書くときのポイントを教えて。前向きに伝えるコツと、避けるべき表現も。</pre>
+    <button class="copy-btn" type="button" data-copy="s26">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">27.</span>キャリアプラン</div>
+    <pre class="prompt-text" data-prompt="s27">「5年後・10年後のキャリア」を面接で話すときの構成例を教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="s27">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">28.</span>周りからの評価</div>
+    <pre class="prompt-text" data-prompt="s28">「周りからどう見られていますか？」と聞かれたときの回答の考え方を教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="s28">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">29.</span>企業選びの軸</div>
+    <pre class="prompt-text" data-prompt="s29">就活で企業を選ぶときの「軸」の例を5つ教えて。自分に合う軸の見つけ方も。</pre>
+    <button class="copy-btn" type="button" data-copy="s29">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">30.</span>面接後のフォロー</div>
+    <pre class="prompt-text" data-prompt="s30">面接後に送るお礼メールの例を作成してください。当日中に送る想定で、簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="s30">コピー</button>
+  </div>
+
+  <h2 id="shigoto">仕事で使えるプロンプト30本ノック</h2>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">1.</span>メールの下書き</div>
+    <pre class="prompt-text" data-prompt="w1">あなたはビジネスメールの作成をサポートする専門家です。
 以下の内容でメールの下書きを作成してください。
 
 宛先：[上司/同僚/取引先など]
 件名：[件名を書く]
 内容：[伝えたい内容を書く]
-
-制約：
-- 丁寧で簡潔
-- 要件を明確に
-- 必要に応じて謝罪や感謝の言葉を含める</pre>
-    <button class="copy-btn" type="button" data-copy="mail">コピー</button>
+制約：丁寧で簡潔、要件を明確に、必要に応じて謝罪や感謝の言葉を含める</pre>
+    <button class="copy-btn" type="button" data-copy="w1">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">会議を遅らせたいときのメール例</div>
-    <pre class="prompt-text" data-prompt="mail-time">「上司に、明日の会議を1時間遅らせたいと伝えるメール」の下書きを作成して。丁寧で簡潔に。</pre>
-    <button class="copy-btn" type="button" data-copy="mail-time">コピー</button>
+    <div class="prompt-title"><span class="prompt-num">2.</span>会議を遅らせたいときのメール</div>
+    <pre class="prompt-text" data-prompt="w2">上司に、明日の会議を1時間遅らせたいと伝えるメールの下書きを作成して。丁寧で簡潔に。理由（体調不良など）を簡潔に含める。</pre>
+    <button class="copy-btn" type="button" data-copy="w2">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">報告書の構成</div>
-    <pre class="prompt-text" data-prompt="report">あなたはビジネス文書の作成をサポートする専門家です。
+    <div class="prompt-title"><span class="prompt-num">3.</span>報告書の構成</div>
+    <pre class="prompt-text" data-prompt="w3">あなたはビジネス文書の作成をサポートする専門家です。
 以下の内容で報告書の構成を考えてください。
 
 報告内容：[何について報告するか]
 対象読者：[誰に報告するか]
-
-制約：
-- 見出しと箇条書きで構成
-- 重要なポイントを最初に
-- A4用紙1枚程度で収まる分量</pre>
-    <button class="copy-btn" type="button" data-copy="report">コピー</button>
+制約：見出しと箇条書きで構成、重要なポイントを最初に、A4用紙1枚程度</pre>
+    <button class="copy-btn" type="button" data-copy="w3">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">会議の議事録のポイント</div>
-    <pre class="prompt-text" data-prompt="minutes">会議の議事録で押さえるべきポイントを、5つ箇条書きで教えて。</pre>
-    <button class="copy-btn" type="button" data-copy="minutes">コピー</button>
+    <div class="prompt-title"><span class="prompt-num">4.</span>議事録のポイント</div>
+    <pre class="prompt-text" data-prompt="w4">会議の議事録で押さえるべきポイントを、5つ箇条書きで教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="w4">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">議事録の要約</div>
-    <pre class="prompt-text" data-prompt="minutes-summary">あなたは議事録を整理するサポートをする専門家です。
+    <div class="prompt-title"><span class="prompt-num">5.</span>議事録の要約</div>
+    <pre class="prompt-text" data-prompt="w5">あなたは議事録を整理するサポートをする専門家です。
 以下の会議メモを要約し、決定事項・TODO・次回日程を箇条書きで整理してください。
 
 【会議メモをここに貼る】</pre>
-    <button class="copy-btn" type="button" data-copy="minutes-summary">コピー</button>
+    <button class="copy-btn" type="button" data-copy="w5">コピー</button>
   </div>
 
-  <h2>生活編</h2>
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">6.</span>報告の伝え方</div>
+    <pre class="prompt-text" data-prompt="w6">上司に「会議を1時間遅らせたい」と伝えたいです。どう言うと伝わりやすいか、いくつかパターンを提案してください。</pre>
+    <button class="copy-btn" type="button" data-copy="w6">コピー</button>
+  </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">レシピ提案</div>
-    <pre class="prompt-text" data-prompt="recipe">あなたは料理のレシピを提案する専門家です。
+    <div class="prompt-title"><span class="prompt-num">7.</span>議事録の詳細要約</div>
+    <pre class="prompt-text" data-prompt="w7">あなたは経験豊富な議事録作成者です。以下の会議テキストから、決定事項・議論の要点・各担当者へのアクションアイテムと期日を抽出してまとめてください。箇条書きで簡潔に。
+
+[ここに会議メモを貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="w7">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">8.</span>報告書の基本構成</div>
+    <pre class="prompt-text" data-prompt="w8">報告書を書くときの基本構成（見出しの例）を5つ挙げて。</pre>
+    <button class="copy-btn" type="button" data-copy="w8">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">9.</span>謝罪メール</div>
+    <pre class="prompt-text" data-prompt="w9">あなたはビジネスメールの作成をサポートする専門家です。
+[遅刻/ミス/納期遅れなど]について、上司に謝罪するメールの下書きを作成してください。
+
+状況：[簡潔に書く]
+制約：丁寧で簡潔、謝罪の言葉、今後の対応を明記</pre>
+    <button class="copy-btn" type="button" data-copy="w9">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">10.</span>お礼メール</div>
+    <pre class="prompt-text" data-prompt="w10">取引先へのお礼メールの下書きを作成してください。
+
+宛先：[相手] お礼の内容：[何についてお礼か]
+制約：丁寧で簡潔、200〜300文字程度</pre>
+    <button class="copy-btn" type="button" data-copy="w10">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">11.</span>マニュアルの構成</div>
+    <pre class="prompt-text" data-prompt="w11">[業務名]のマニュアルを作る時の構成の例を教えて。新入社員向けに、手順を追いやすい形式で。</pre>
+    <button class="copy-btn" type="button" data-copy="w11">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">12.</span>プレゼンの構成</div>
+    <pre class="prompt-text" data-prompt="w12">[テーマ]について5分でプレゼンするときの構成例を教えて。スライドの枚数と各スライドの内容を簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="w12">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">13.</span>長い文章の要約</div>
+    <pre class="prompt-text" data-prompt="w13">以下の文章を3つのポイントに要約してください。
+
+[ここに文章を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="w13">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">14.</span>アジェンダ作成</div>
+    <pre class="prompt-text" data-prompt="w14">[会議の目的]のための1時間会議のアジェンダを作成してください。時間配分も含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="w14">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">15.</span>依頼メール</div>
+    <pre class="prompt-text" data-prompt="w15">同僚に[タスク内容]を依頼するメールの下書きを作成してください。期限と依頼理由を簡潔に含めて。丁寧で読みやすいトーンで。</pre>
+    <button class="copy-btn" type="button" data-copy="w15">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">16.</span>週報の構成</div>
+    <pre class="prompt-text" data-prompt="w16">週次報告書の構成例を教えて。上司に報告する想定で、簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="w16">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">17.</span>プレゼン原稿</div>
+    <pre class="prompt-text" data-prompt="w17">[テーマ]について3分で話すプレゼン原稿を作成してください。聞き手は[対象者]です。</pre>
+    <button class="copy-btn" type="button" data-copy="w17">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">18.</span>メール返信の例</div>
+    <pre class="prompt-text" data-prompt="w18">以下のメールへの返信文を作成してください。丁寧で簡潔に。
+
+[メール本文を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="w18">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">19.</span>会議のファシリテーション</div>
+    <pre class="prompt-text" data-prompt="w19">1時間の会議をファシリテートするときの進め方の例を教えて。時間配分も含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="w19">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">20.</span>タスクの優先順位</div>
+    <pre class="prompt-text" data-prompt="w20">複数のタスクがあるとき、優先順位をつける方法を教えて。判断の基準も含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="w20">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">21.</span>稟議書の構成</div>
+    <pre class="prompt-text" data-prompt="w21">稟議書を書くときの基本構成を教えて。承認を得やすい書き方のポイントも。</pre>
+    <button class="copy-btn" type="button" data-copy="w21">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">22.</span>ブレストの進め方</div>
+    <pre class="prompt-text" data-prompt="w22">ブレインストーミングを効果的に進めるためのルールと進め方を教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="w22">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">23.</span>トラブル報告の書き方</div>
+    <pre class="prompt-text" data-prompt="w23">トラブルが発生したとき、上司に報告するメールの書き方のポイントを教えて。含めるべき項目も。</pre>
+    <button class="copy-btn" type="button" data-copy="w23">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">24.</span>スケジュール調整メール</div>
+    <pre class="prompt-text" data-prompt="w24">複数人で日程を調整するときのメールの例を作成してください。候補日を提示する形で。</pre>
+    <button class="copy-btn" type="button" data-copy="w24">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">25.</span>提案書の構成</div>
+    <pre class="prompt-text" data-prompt="w25">[テーマ]についての提案書の構成例を教えて。説得力を持たせるポイントも。</pre>
+    <button class="copy-btn" type="button" data-copy="w25">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">26.</span>議事録テンプレート</div>
+    <pre class="prompt-text" data-prompt="w26">会議の議事録のテンプレート（見出しの例）を作成してください。一般的な会議向けに。</pre>
+    <button class="copy-btn" type="button" data-copy="w26">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">27.</span>リマインドメール</div>
+    <pre class="prompt-text" data-prompt="w27">[期限・イベント]のリマインドメールを作成してください。丁寧で簡潔に。</pre>
+    <button class="copy-btn" type="button" data-copy="w27">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">28.</span>専門用語の説明</div>
+    <pre class="prompt-text" data-prompt="w28">[専門用語]を、専門知識のない人向けにわかりやすく説明してください。</pre>
+    <button class="copy-btn" type="button" data-copy="w28">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">29.</span>ToDoリストの整理</div>
+    <pre class="prompt-text" data-prompt="w29">以下のタスクを優先順位と期限で整理してください。緊急度と重要度で分類して。
+
+[タスク一覧を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="w29">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">30.</span>退職の挨拶メール</div>
+    <pre class="prompt-text" data-prompt="w30">退職の挨拶メールの例を作成してください。お世話になった感謝を伝える形で、丁寧に。</pre>
+    <button class="copy-btn" type="button" data-copy="w30">コピー</button>
+  </div>
+
+  <h2 id="seikatsu">生活で使えるプロンプト30本ノック</h2>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">1.</span>レシピ提案</div>
+    <pre class="prompt-text" data-prompt="l1">あなたは料理のレシピを提案する専門家です。
 以下の条件でレシピを提案してください。
 
-条件：
-- 使いたい食材：[食材を書く]
-- 調理時間：[時間を書く]
-- 難易度：[簡単/普通/難しい]
-
-制約：
-- 手順をわかりやすく
-- 分量も含める
-- 箇条書きで</pre>
-    <button class="copy-btn" type="button" data-copy="recipe">コピー</button>
+条件：使いたい食材：[食材を書く] 調理時間：[時間を書く] 難易度：[簡単/普通/難しい]
+制約：手順をわかりやすく、分量も含める、箇条書きで</pre>
+    <button class="copy-btn" type="button" data-copy="l1">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">今の気分に合うレシピ（短い例）</div>
-    <pre class="prompt-text" data-prompt="recipe-short">今の気分に合う簡単なレシピを1つ提案して。材料は3〜4品目までで。</pre>
-    <button class="copy-btn" type="button" data-copy="recipe-short">コピー</button>
+    <div class="prompt-title"><span class="prompt-num">2.</span>今の気分に合うレシピ</div>
+    <pre class="prompt-text" data-prompt="l2">今の気分に合う簡単なレシピを1つ提案して。材料は3〜4品目までで。</pre>
+    <button class="copy-btn" type="button" data-copy="l2">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">悩みごとの整理</div>
-    <pre class="prompt-text" data-prompt="worry">あなたは悩みごとを整理するサポートをする専門家です。
+    <div class="prompt-title"><span class="prompt-num">3.</span>献立・レシピ（条件付き）</div>
+    <pre class="prompt-text" data-prompt="l3">【条件】大人2人、調理時間20分以内、冷蔵庫の食材を使い切りたい
+【今日の食材】[食材を書く]
+【お願い】3つの献立案を出して、作り方も簡潔に</pre>
+    <button class="copy-btn" type="button" data-copy="l3">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">4.</span>悩みごとの整理</div>
+    <pre class="prompt-text" data-prompt="l4">あなたは悩みごとを整理するサポートをする専門家です。
 以下の悩みごとを整理して、考えられる解決策を提案してください。
 
 悩みごと：[悩みを書く]
-
-制約：
-- 悩みを3つのポイントに整理
-- それぞれの解決策を2つずつ提案
-- 前向きで建設的なアドバイス
-- 箇条書きで</pre>
-    <button class="copy-btn" type="button" data-copy="worry">コピー</button>
+制約：悩みを3つのポイントに整理、それぞれの解決策を2つずつ提案、前向きで建設的なアドバイス、箇条書きで</pre>
+    <button class="copy-btn" type="button" data-copy="l4">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">悩みを整理するための質問例</div>
-    <pre class="prompt-text" data-prompt="worry-q">悩みごとを整理するとき、自分に質問する例を5つ挙げて。</pre>
-    <button class="copy-btn" type="button" data-copy="worry-q">コピー</button>
+    <div class="prompt-title"><span class="prompt-num">5.</span>悩みを整理する質問例</div>
+    <pre class="prompt-text" data-prompt="l5">悩みごとを整理するとき、自分に質問する例を5つ挙げて。</pre>
+    <button class="copy-btn" type="button" data-copy="l5">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">趣味を探す</div>
-    <pre class="prompt-text" data-prompt="hobby">「初心者向けの趣味」を3つ提案して。それぞれ1行で説明して。</pre>
-    <button class="copy-btn" type="button" data-copy="hobby">コピー</button>
+    <div class="prompt-title"><span class="prompt-num">6.</span>趣味を探す</div>
+    <pre class="prompt-text" data-prompt="l6">「初心者向けの趣味」を3つ提案して。それぞれ1行で説明して。</pre>
+    <button class="copy-btn" type="button" data-copy="l6">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">通院のときの体調説明</div>
-    <pre class="prompt-text" data-prompt="health-visit">あなたは医療機関で患者の説明を整理するサポートをする専門家です。
+    <div class="prompt-title"><span class="prompt-num">7.</span>通院のときの体調説明</div>
+    <pre class="prompt-text" data-prompt="l7">あなたは医療機関で患者の説明を整理するサポートをする専門家です。
 通院のとき、医師に伝えるための体調の説明文を整理してください。
 
-現在の症状：[症状を書く]
-いつから：[時期]
-どの程度か：[頻度・程度・気になること]
+現在の症状：[症状を書く] いつから：[時期] どの程度か：[頻度・程度]
 飲んでいる薬・持病：[あれば書く]
-
-制約：
-- 短く要点だけ。医師が聞き取りやすい順に
-- 箇条書きで2〜3分で話せる分量
-- 自分の言葉で伝えやすいように</pre>
-    <button class="copy-btn" type="button" data-copy="health-visit">コピー</button>
+制約：短く要点だけ、箇条書きで2〜3分で話せる分量</pre>
+    <button class="copy-btn" type="button" data-copy="l7">コピー</button>
   </div>
 
   <div class="prompt-block">
-    <div class="prompt-title">体調管理</div>
-    <pre class="prompt-text" data-prompt="health-mgmt">あなたは体調管理をサポートする専門家です。
+    <div class="prompt-title"><span class="prompt-num">8.</span>体調管理のアドバイス</div>
+    <pre class="prompt-text" data-prompt="l8">あなたは体調管理をサポートする専門家です。
 体調を記録・管理するためのアドバイスをしてください。
 
-知りたいこと（次のいずれかや複数でOK）：
-- 体調を記録するときのポイント・項目の例
-- 体調の波があるときの過ごし方のコツ
-- 通院や服薬を忘れないための工夫
-- その他：[自分で書く]
+知りたいこと：体調を記録するときのポイント、体調の波があるときの過ごし方、通院や服薬を忘れない工夫 など
+制約：無理のない範囲で、箇条書きで、3〜5つのポイントにまとめて</pre>
+    <button class="copy-btn" type="button" data-copy="l8">コピー</button>
+  </div>
 
-制約：
-- 無理のない範囲でできることを
-- 箇条書きでわかりやすく
-- 3〜5つのポイントにまとめて</pre>
-    <button class="copy-btn" type="button" data-copy="health-mgmt">コピー</button>
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">9.</span>医師への体調メモ整理</div>
+    <pre class="prompt-text" data-prompt="l9">上記の状況を、医師に見せるように箇条書きにしてください。
+
+※日々の症状メモを書いたあと、この1行を追記して送信</pre>
+    <button class="copy-btn" type="button" data-copy="l9">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">10.</span>カウンセラー役</div>
+    <pre class="prompt-text" data-prompt="l10">あなたはカウンセラーです。私の悩みについて、一つずつ質問をして、私が整理できるように手助けしてください。急がず、じっくり進めてください。</pre>
+    <button class="copy-btn" type="button" data-copy="l10">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">11.</span>記事の要点要約</div>
+    <pre class="prompt-text" data-prompt="l11">以下の記事の要点を3つにまとめてください。
+
+[ここに記事を貼る]</pre>
+    <button class="copy-btn" type="button" data-copy="l11">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">12.</span>体調記録のポイント</div>
+    <pre class="prompt-text" data-prompt="l12">体調を記録するときのポイント・項目の例を5つ教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l12">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">13.</span>体調の波への対処</div>
+    <pre class="prompt-text" data-prompt="l13">体調の波があるときの過ごし方のコツを、3〜5つ箇条書きで教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l13">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">14.</span>服薬を忘れない工夫</div>
+    <pre class="prompt-text" data-prompt="l14">通院や服薬を忘れがちです。忘れないための工夫を、無理のない範囲で3つ提案してください。</pre>
+    <button class="copy-btn" type="button" data-copy="l14">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">15.</span>問診の整理（インタビュー形式）</div>
+    <pre class="prompt-text" data-prompt="l15">あなたは優秀なナースです。体調が優れなくこれから病院に行きます。医師に体調を伝えたく、現状の体調を一緒に整理してくれますか？</pre>
+    <button class="copy-btn" type="button" data-copy="l15">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">16.</span>週間献立</div>
+    <pre class="prompt-text" data-prompt="l16">1週間の献立を考えてください。[人数]人分、[予算]円程度、[調理時間の目安]で。買い物リストも作って。</pre>
+    <button class="copy-btn" type="button" data-copy="l16">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">17.</span>節約レシピ</div>
+    <pre class="prompt-text" data-prompt="l17">節約できるレシピを3つ提案して。材料費を抑えるコツも教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l17">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">18.</span>ストレス解消法</div>
+    <pre class="prompt-text" data-prompt="l18">ストレス解消の方法を、手軽にできるものを5つ提案してください。</pre>
+    <button class="copy-btn" type="button" data-copy="l18">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">19.</span>睡眠の質を上げる</div>
+    <pre class="prompt-text" data-prompt="l19">睡眠の質を上げるための工夫を、5つ箇条書きで教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l19">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">20.</span>時間管理のコツ</div>
+    <pre class="prompt-text" data-prompt="l20">1日の時間を有効に使うためのコツを5つ教えて。忙しい人向けに。</pre>
+    <button class="copy-btn" type="button" data-copy="l20">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">21.</span>読書のすすめ</div>
+    <pre class="prompt-text" data-prompt="l21">[興味・悩み]に合う本を3冊すすめて。それぞれ1行で内容を説明して。</pre>
+    <button class="copy-btn" type="button" data-copy="l21">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">22.</span>旅行の計画</div>
+    <pre class="prompt-text" data-prompt="l22">[行き先]への[日数]旅行の計画を立てて。観光スポットと移動の目安を教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l22">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">23.</span>一人暮らしのレシピ</div>
+    <pre class="prompt-text" data-prompt="l23">一人暮らし向けの簡単レシピを3つ提案して。作り置きできるものも含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="l23">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">24.</span>お金の管理</div>
+    <pre class="prompt-text" data-prompt="l24">家計管理の基本を教えて。初心者向けに、シンプルな方法を5つ。</pre>
+    <button class="copy-btn" type="button" data-copy="l24">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">25.</span>目標の立て方</div>
+    <pre class="prompt-text" data-prompt="l25">[〇〇]の目標を立てたいです。達成しやすい目標の立て方を教えて。SMARTの考え方も含めて。</pre>
+    <button class="copy-btn" type="button" data-copy="l25">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">26.</span>習慣化のコツ</div>
+    <pre class="prompt-text" data-prompt="l26">新しい習慣を続けるためのコツを5つ教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l26">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">27.</span>断捨離の進め方</div>
+    <pre class="prompt-text" data-prompt="l27">部屋の断捨離を進めたいです。無理のない進め方と、捨てる判断の基準を教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l27">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">28.</span>資格の選び方</div>
+    <pre class="prompt-text" data-prompt="l28">[目的・興味]に合う資格を3つ提案して。それぞれの概要と取得の難易度も。</pre>
+    <button class="copy-btn" type="button" data-copy="l28">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">29.</span>イベントの企画</div>
+    <pre class="prompt-text" data-prompt="l29">[人数]人で[イベントの種類]を企画したいです。進め方の例とチェックリストを教えて。</pre>
+    <button class="copy-btn" type="button" data-copy="l29">コピー</button>
+  </div>
+
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">30.</span>感謝の言葉</div>
+    <pre class="prompt-text" data-prompt="l30">[相手]への感謝の気持ちを伝えるメッセージの例を3パターン作ってください。</pre>
+    <button class="copy-btn" type="button" data-copy="l30">コピー</button>
   </div>
 
   <footer>
