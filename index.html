@@ -13,11 +13,11 @@
       --bg-card: #1e293b;
       --bg-card-hover: #334155;
       --border: #334155;
-      --primary: #38bdf8;
-      --primary-hover: #7dd3fc;
+      --primary: #92B222;
+      --primary-hover: #a8c43a;
       --text: #f1f5f9;
       --muted: #94a3b8;
-      --accent: #a78bfa;
+      --accent: #CBEFFA;
       --success: #34d399;
       --btn-text: #0f172a;
       --nav-link-text: #0f172a;
@@ -27,21 +27,21 @@
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
     }
     body.theme-light {
-      --bg: #f8fafc;
+      --bg: #f5f9eb;
       --bg-card: #ffffff;
-      --bg-card-hover: #f1f5f9;
-      --border: #e2e8f0;
-      --primary: #0284c7;
-      --primary-hover: #0369a1;
-      --text: #0f172a;
-      --muted: #64748b;
-      --accent: #7c3aed;
+      --bg-card-hover: #E8F3C3;
+      --border: #d4e8a8;
+      --primary: #92B222;
+      --primary-hover: #7a9a1c;
+      --text: #1a2e0a;
+      --muted: #5a6b3a;
+      --accent: #CBEFFA;
       --success: #059669;
       --btn-text: #ffffff;
-      --nav-link-text: #ffffff;
-      --prompt-bg: rgba(0,0,0,0.06);
-      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-lg: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06);
+      --nav-link-text: #1a2e0a;
+      --prompt-bg: #E8F3C3;
+      --shadow: 0 1px 3px rgba(146,178,34,0.12), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 6px -1px rgba(146,178,34,0.15), 0 2px 4px -2px rgba(0,0,0,0.08);
     }
     * { box-sizing: border-box; }
     body {
@@ -923,13 +923,40 @@
 
   <div id="panel-meta" class="tab-panel" role="tabpanel">
   <h2>メタプロンプト</h2>
-  <p style="margin-bottom: 1rem; font-size: 0.95rem; color: var(--muted);">プロンプトの書き方に迷ったら、このプロンプトでAIにプロンプト案を出してもらえます。</p>
-  <div class="prompt-block meta-compact" style="border-left: 4px solid var(--primary);">
-    <span class="prompt-title">メタプロンプト：</span>
-    <pre class="prompt-text" data-prompt="meta">[やりたいこと]ということをしたい。それをAIに頼むためのプロンプトを作って。</pre>
-    <button class="copy-btn" type="button" data-copy="meta">コピー</button>
+  <p style="margin-bottom: 1rem; font-size: 0.95rem; color: var(--muted);">プロンプトの書き方に迷ったら、これらのメタプロンプトでAIをより効果的に使えます。</p>
+  <div class="prompts-grid">
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">1.</span>プロンプト生成</div>
+    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; color: var(--muted);">AIにプロンプト案を出してもらう</p>
+    <pre class="prompt-text" data-prompt="meta1">[やりたいこと]ということをしたい。それをAIに頼むためのプロンプトを作って。</pre>
+    <p style="margin: 0.25rem 0; font-size: 0.8rem; color: var(--muted);">例：「就活の自己PR文を書きたい。プロンプトを作って」</p>
+    <button class="copy-btn" type="button" data-copy="meta1">コピー</button>
   </div>
-  <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--muted);">例：「就活の自己PR文を書きたい。プロンプトを作って」「上司に会議を遅らせたいと伝えるメールを書きたい。プロンプトを作って」</p>
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">2.</span>逆質問</div>
+    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; color: var(--muted);">AIに質問させてタスクの完成度を上げる</p>
+    <pre class="prompt-text" data-prompt="meta2">[やりたいこと]ということをしたい。それをAIに頼むためのプロンプトを作って。タスクの完成度を上げるために、私に質問することがあったら尋ねて。</pre>
+    <button class="copy-btn" type="button" data-copy="meta2">コピー</button>
+  </div>
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">3.</span>自己評価と修正</div>
+    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; color: var(--muted);">AI自身に回答を評価・修正させる。ハルシネーション軽減にも効果的</p>
+    <pre class="prompt-text" data-prompt="meta3">上記のあなたの回答を、『論理性』『具体性』『読者にとっての分かりやすさ』の3つの観点から100点満点で厳しく自己評価してください。もし減点がある場合は、その理由を述べた上で、満点となるように修正した新しい回答を提示して。</pre>
+    <button class="copy-btn" type="button" data-copy="meta3">コピー</button>
+  </div>
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">4.</span>ルールの定義</div>
+    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; color: var(--muted);">AIに最適なルールを作らせ、それに従わせる</p>
+    <pre class="prompt-text" data-prompt="meta4">これから[ブログ記事の執筆 / プログラミングのコード生成など]をお願いします。まずは、このタスクを最高品質で完了するために、あなたが守るべき『ガイドラインや制約条件』を5つ提案してください。私がそれに合意した後、その条件に厳密に従って出力して。</pre>
+    <button class="copy-btn" type="button" data-copy="meta4">コピー</button>
+  </div>
+  <div class="prompt-block">
+    <div class="prompt-title"><span class="prompt-num">5.</span>多角的な視点の導入</div>
+    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; color: var(--muted);">複数のペルソナで議論させ、結論を出す。アイデア出しや企画の穴探しに強力</p>
+    <pre class="prompt-text" data-prompt="meta5">[テーマやアイデア]について評価したいです。あなたの中で『熱狂的な推進派』『慎重な批判家』『フラットな視点を持つモデレーター』の3人のペルソナを用意し、彼らで議論を行ってください。最後に、モデレーターが議論の総括と最終的なアドバイスをまとめて出力して。</pre>
+    <button class="copy-btn" type="button" data-copy="meta5">コピー</button>
+  </div>
+  </div>
   </div>
 
   <footer>
