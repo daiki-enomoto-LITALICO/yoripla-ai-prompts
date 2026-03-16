@@ -19,10 +19,29 @@
       --muted: #94a3b8;
       --accent: #a78bfa;
       --success: #34d399;
+      --btn-text: #0f172a;
+      --nav-link-text: #0f172a;
       --radius: 12px;
       --radius-sm: 8px;
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
+    }
+    body.theme-light {
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #7c3aed;
+      --success: #059669;
+      --btn-text: #ffffff;
+      --nav-link-text: #ffffff;
+      --prompt-bg: rgba(0,0,0,0.06);
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06);
     }
     * { box-sizing: border-box; }
     body {
@@ -58,29 +77,42 @@
       padding-bottom: 0.5rem;
     }
     h2:first-of-type { margin-top: 0; }
-    /* 表示切り替え */
-    .view-toggle {
+    /* ヘッダー・右上コントロール */
+    .page-header {
       display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .page-header h1 { margin: 0; }
+    .top-controls {
+      display: flex;
+      align-items: center;
       gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      padding: 0.5rem;
+      flex-shrink: 0;
+    }
+    .theme-toggle, .view-toggle {
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.25rem 0.35rem;
       background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      width: fit-content;
       box-shadow: var(--shadow);
     }
-    .view-toggle button {
-      padding: 0.5rem 1rem;
+    .theme-toggle button, .view-toggle button {
+      padding: 0.25rem 0.5rem;
       border: none;
-      border-radius: var(--radius-sm);
+      border-radius: 4px;
       background: transparent;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .view-toggle button:hover { color: var(--text); background: var(--bg-card-hover); }
-    .view-toggle button.active { background: var(--primary); color: var(--bg); font-weight: 500; }
+    .theme-toggle button:hover, .view-toggle button:hover { color: var(--text); background: var(--bg-card-hover); }
+    .theme-toggle button.active, .view-toggle button.active { background: var(--primary); color: var(--btn-text); font-weight: 500; }
     /* リスト表示 */
     .prompts-grid { display: flex; flex-direction: column; gap: 1rem; }
     .prompts-grid.view-tile {
@@ -109,7 +141,7 @@
       white-space: pre-wrap;
       font-family: "Consolas", "Monaco", "SF Mono", monospace;
       font-size: 0.8rem;
-      background: rgba(0,0,0,0.2);
+      background: var(--prompt-bg, rgba(0,0,0,0.2));
       padding: 0.75rem;
       border-radius: var(--radius-sm);
       margin: 0.5rem 0;
@@ -132,7 +164,7 @@
       align-items: center;
       gap: 0.35rem;
       background: var(--primary);
-      color: var(--bg) !important;
+      color: var(--btn-text) !important;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: var(--radius-sm);
@@ -144,6 +176,18 @@
     }
     .copy-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
     .copy-btn.copied { background: var(--success); }
+    /* メタプロンプト（コンパクト） */
+    .meta-compact {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      padding: 0.75rem 1rem !important;
+      margin-bottom: 1rem;
+    }
+    .meta-compact .prompt-title { margin: 0; font-size: 0.9rem; }
+    .meta-compact .prompt-text { margin: 0; padding: 0.35rem 0.6rem; font-size: 0.8rem; flex: 1; min-width: 200px; }
+    .meta-compact .copy-btn { margin: 0; }
     footer { margin-top: 3rem; font-size: 0.85rem; color: var(--muted); text-align: center; }
     /* フローティングナビ */
     .float-nav {
@@ -164,7 +208,7 @@
       display: block;
       padding: 0.5rem 1rem;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: var(--bg) !important;
+      color: var(--nav-link-text) !important;
       text-decoration: none;
       border-radius: var(--radius-sm);
       font-size: 0.85rem;
@@ -175,6 +219,8 @@
     .float-nav a:hover { transform: scale(1.05); }
     .float-nav .label { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.25rem; }
     @media (max-width: 640px) {
+      .page-header { flex-direction: column; align-items: stretch; }
+      .top-controls { justify-content: flex-end; }
       .prompts-grid.view-tile { grid-template-columns: 1fr; }
       .float-nav { bottom: 0.75rem; right: 0.75rem; }
     }
@@ -182,24 +228,28 @@
 </head>
 <body>
   <div class="container">
-  <h1>ヨリプラ AIプログラム プロンプト集</h1>
-  <p class="subtitle">就活・仕事・生活で使えるプロンプト30本ノック（Geminiなどでコピペして使えます）</p>
-
-  <div class="view-toggle" role="group" aria-label="表示切り替え">
-    <button type="button" id="view-tile" class="view-btn" aria-pressed="false">タイル表示</button>
-    <button type="button" id="view-list" class="view-btn active" aria-pressed="true">リスト表示</button>
-  </div>
+  <header class="page-header">
+    <h1>ヨリプラ AIプログラム プロンプト集</h1>
+    <div class="top-controls">
+      <div class="theme-toggle" role="group" aria-label="テーマ切り替え">
+        <button type="button" id="theme-dark" class="theme-btn active" aria-pressed="true">ダーク</button>
+        <button type="button" id="theme-light" class="theme-btn" aria-pressed="false">ライト</button>
+      </div>
+      <div class="view-toggle" role="group" aria-label="表示切り替え">
+        <button type="button" id="view-list" class="view-btn active" aria-pressed="true">リスト</button>
+        <button type="button" id="view-tile" class="view-btn" aria-pressed="false">カード</button>
+      </div>
+    </div>
+  </header>
 
   <div class="intro">
     <strong>使い方</strong><br>
     各プロンプトの「コピー」ボタンを押すと、AIチャット欄に貼り付けてすぐ使えます。ご自身の状況に合わせて、[ ]内を書き換えてください。右下のフローティングボタンで各セクションにすぐ移動できます。
   </div>
 
-  <div class="prompt-block" style="border-left: 4px solid var(--primary);">
-    <div class="prompt-title">メタプロンプト（プロンプトの書き方に迷ったら）</div>
-    <p style="margin: 0.5rem 0; font-size: 0.9rem;">「〇〇ということをしたい。それをAIに頼むためのプロンプトを作って。」と伝えると、AIがプロンプト案を出してくれます。</p>
+  <div class="prompt-block meta-compact" style="border-left: 4px solid var(--primary);">
+    <span class="prompt-title">メタプロンプト：</span>
     <pre class="prompt-text" data-prompt="meta">[やりたいこと]ということをしたい。それをAIに頼むためのプロンプトを作って。</pre>
-    <p style="margin: 0.25rem 0; font-size: 0.85rem; color: var(--muted);">例：「就活の自己PR文を書きたい。プロンプトを作って」「上司に会議を遅らせたいと伝えるメールを書きたい。プロンプトを作って」</p>
     <button class="copy-btn" type="button" data-copy="meta">コピー</button>
   </div>
 
@@ -852,10 +902,13 @@
 
   <script>
     (function() {
-      var STORAGE_KEY = 'yoripla-prompt-view';
+      var VIEW_KEY = 'yoripla-prompt-view';
+      var THEME_KEY = 'yoripla-theme';
       var grids = document.querySelectorAll('.prompts-grid');
       var btnTile = document.getElementById('view-tile');
       var btnList = document.getElementById('view-list');
+      var btnThemeDark = document.getElementById('theme-dark');
+      var btnThemeLight = document.getElementById('theme-light');
 
       function setView(mode) {
         var isTile = mode === 'tile';
@@ -864,14 +917,28 @@
         btnList.classList.toggle('active', !isTile);
         btnTile.setAttribute('aria-pressed', isTile);
         btnList.setAttribute('aria-pressed', !isTile);
-        try { localStorage.setItem(STORAGE_KEY, mode); } catch(e) {}
+        try { localStorage.setItem(VIEW_KEY, mode); } catch(e) {}
+      }
+
+      function setTheme(mode) {
+        var isLight = mode === 'light';
+        document.body.classList.toggle('theme-light', isLight);
+        btnThemeDark.classList.toggle('active', !isLight);
+        btnThemeLight.classList.toggle('active', isLight);
+        btnThemeDark.setAttribute('aria-pressed', !isLight);
+        btnThemeLight.setAttribute('aria-pressed', isLight);
+        try { localStorage.setItem(THEME_KEY, mode); } catch(e) {}
       }
 
       btnTile.addEventListener('click', function() { setView('tile'); });
       btnList.addEventListener('click', function() { setView('list'); });
+      btnThemeDark.addEventListener('click', function() { setTheme('dark'); });
+      btnThemeLight.addEventListener('click', function() { setTheme('light'); });
 
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === 'tile') setView('tile');
+      var savedView = localStorage.getItem(VIEW_KEY);
+      if (savedView === 'tile') setView('tile');
+      var savedTheme = localStorage.getItem(THEME_KEY);
+      if (savedTheme === 'light') setTheme('light');
     })();
 
     document.querySelectorAll('.copy-btn').forEach(function(btn) {
